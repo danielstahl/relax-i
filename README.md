@@ -1,2 +1,2 @@
 # relax-i
-Music to relax and focus
+Music to relax and focus.
