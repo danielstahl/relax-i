@@ -59,3 +59,7 @@ Synth("dust", [dur: a, freq: 2, amp: 1.5, panStart: 1, panEnd: 0.5]);
 )
 
 Synth("thetaStereo", [dur: 10, first: 500, secondStart: 130, secondEnd: 107, attack: 0.3, amp: 0.1]);
+
+
+{ PinkNoise.ar(SinOsc.kr(Line.kr(4/60, 7/60, 10)))}.play;
+

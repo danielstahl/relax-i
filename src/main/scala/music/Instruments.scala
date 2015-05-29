@@ -185,6 +185,13 @@ class WhiteNoiseInstrumentBuilder extends CommonNoiseInstrumentBuilder {
   val instrumentName: String = "whiteNoise"
 }
 
+class BrownNoiseInstrumentBuilder extends CommonNoiseInstrumentBuilder {
+  type SelfType = BrownNoiseInstrumentBuilder
+  def self(): SelfType = this
+
+  val instrumentName: String = "brownNoise"
+}
+
 abstract class CommonVolumeBuilder extends AbstractInstrumentBuilder with DurBuilder with InputBuilder {
 
   val ampBus = ControlArgumentBuilder[SelfType](self(), "ampBus")
