@@ -161,6 +161,59 @@ class ARControlInstrumentBuilder extends AbstractInstrumentBuilder with ControlI
         "releaseType", releaseType.name)
 }
 
+object SinControlInstrumentBuilder {
+  def sin(dur: Float, startFreq: Float, endFreq: Float, mulStart: Float = 1.0f, mulEnd: Float = 1.0f, addStart: Float = 0, addEnd: Float = 0, nodeId: Node = SOURCE) =
+    new SinControlInstrumentBuilder()
+      .nodeId(nodeId)
+      .freq(startFreq, endFreq)
+      .mul(mulStart, mulEnd)
+      .add(addStart, addEnd)
+      .dur(dur)
+}
+
+class SinControlInstrumentBuilder extends AbstractInstrumentBuilder with ControlInstrumentBuilder {
+  type SelfType = SinControlInstrumentBuilder
+  def self(): SelfType = this
+  val instrumentName: String = "sinControl"
+
+  var startFreq: jl.Float = buildFloat(1.0f)
+  var endFreq: jl.Float = buildFloat(1.0f)
+  var mulStart: jl.Float = buildFloat(1.0f)
+  var mulEnd: jl.Float = buildFloat(1.0f)
+  var addStart: jl.Float = buildFloat(0.0f)
+  var addEnd: jl.Float = buildFloat(0.0f)
+
+  def freq(start: Float, end: Float): SelfType = {
+    startFreq = buildFloat(start)
+    endFreq = buildFloat(end)
+    self()
+  }
+
+  def mul(start: Float, end: Float): SelfType = {
+    mulStart = buildFloat(start)
+    mulEnd = buildFloat(end)
+    self()
+  }
+
+  def add(start: Float, end: Float): SelfType = {
+    addStart = buildFloat(start)
+    addEnd = buildFloat(end)
+    self()
+  }
+
+  override def build(): Seq[Object] =
+    super.build() ++
+      buildOut() ++
+      buildDur() ++
+      Seq(
+        "startFreq", startFreq,
+        "endFreq", endFreq,
+        "mulStart", mulStart,
+        "mulEnd", mulEnd,
+        "addStart", addStart,
+        "addEnd", addEnd)
+}
+
 abstract class CommonNoiseInstrumentBuilder extends AbstractInstrumentBuilder with DurBuilder with OutputBuilder {
   val ampBus = ControlArgumentBuilder[SelfType](self(), "ampBus")
 

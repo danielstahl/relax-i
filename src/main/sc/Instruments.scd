@@ -33,31 +33,43 @@ SynthDef(\arControl, {
 	Out.kr(out, EnvGen.kr(arEnv, doneAction:2));
 }).add;
 
+SynthDef(\sinControl, {
+	arg dur, out = 0,
+	startFreq, endFreq,
+	mulStart = 1, mulEnd = 1,
+	addStart = 0, addEnd = 0;
+	var freqEnv, mulEnv, addEnv;
+	freqEnv = Line.kr(startFreq, endFreq, dur, doneAction:2);
+	mulEnv = Line.kr(mulStart, mulEnd, dur);
+	addEnv = Line.kr(addStart, addEnd, dur);
+	Out.kr(out, SinOsc.kr(freqEnv, mul:mulEnv, add:addEnv));
+}).add;
+
 SynthDef(\pinkNoise, {
 	arg dur = 1, ampBus = 0, out = 0;
 	var noise, amp;
 	Line.kr(dur:dur, doneAction:2);
-	noise = PinkNoise.ar();
 	amp = In.kr(ampBus);
-	Out.ar(out, noise * amp);
+	noise = PinkNoise.ar(amp);
+	Out.ar(out, noise);
 }).add;
 
 SynthDef(\whiteNoise, {
 	arg dur = 1, ampBus = 0, out = 0;
 	var noise, amp;
 	Line.kr(dur:dur, doneAction:2);
-	noise = WhiteNoise.ar();
 	amp = In.kr(ampBus);
-	Out.ar(out, noise * amp);
+	noise = WhiteNoise.ar(amp);
+	Out.ar(out, noise);
 }).add;
 
 SynthDef(\brownNoise, {
 	arg dur = 1, ampBus = 0, out = 0;
 	var noise, amp;
 	Line.kr(dur:dur, doneAction:2);
-	noise = BrownNoise.ar();
 	amp = In.kr(ampBus);
-	Out.ar(out, noise * amp);
+	noise = BrownNoise.ar(amp);
+	Out.ar(out, noise);
 }).add;
 
 SynthDef(\pan, {
