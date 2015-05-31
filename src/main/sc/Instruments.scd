@@ -72,6 +72,16 @@ SynthDef(\brownNoise, {
 	Out.ar(out, noise);
 }).add;
 
+SynthDef(\dust, {
+	arg dur = 1, freqBus = 0, ampBus = 0, out = 0;
+	var noise, freq, amp;
+	Line.kr(dur:dur, doneAction:2);
+	freq = In.kr(freqBus);
+	amp = In.kr(ampBus);
+	noise = Dust.ar(freq);
+	Out.ar(out, noise * amp);
+}).add;
+
 SynthDef(\pan, {
 	arg dur = 1, panBus = 0, in = 0, out = 0;
 	var pan, input;

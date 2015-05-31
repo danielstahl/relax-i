@@ -245,6 +245,24 @@ class BrownNoiseInstrumentBuilder extends CommonNoiseInstrumentBuilder {
   val instrumentName: String = "brownNoise"
 }
 
+class DustInstrumentBuilder extends AbstractInstrumentBuilder with DurBuilder with OutputBuilder {
+  type SelfType = DustInstrumentBuilder
+  def self(): SelfType = this
+
+  val instrumentName: String = "dust"
+
+  val ampBus = ControlArgumentBuilder[SelfType](self(), "ampBus")
+
+  val freqBus = ControlArgumentBuilder[SelfType](self(), "freqBus")
+
+  override def build(): Seq[Object] =
+    super.build() ++
+      buildOut() ++
+      ampBus.buildBus() ++
+      freqBus.buildBus() ++
+      buildDur()
+}
+
 abstract class CommonVolumeBuilder extends AbstractInstrumentBuilder with DurBuilder with InputBuilder {
 
   val ampBus = ControlArgumentBuilder[SelfType](self(), "ampBus")

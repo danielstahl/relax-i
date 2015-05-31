@@ -19,12 +19,21 @@ object Relax1 {
 
     setupNodes(player)
 
-    val dur = 60*25
+    val dur = 60 * 25
+
     val noise1 = new BrownNoiseInstrumentBuilder()
       .addAction(TAIL_ACTION)
       .out(16)
       .dur(dur)
-      .ampBus.control(sin(dur, 4f/(60f*25f), 4f/(60f*25f)))
+      .ampBus.control(sin(dur, 4f/(60f*25f), 4f/(60f*25f), mulStart = 0.5f, mulEnd = 0.5f))
+      .buildInstruments()
+
+    val dust1 = new DustInstrumentBuilder()
+      .addAction(TAIL_ACTION)
+      .out(16)
+      .dur(dur)
+      .ampBus.control(sin(dur, 4f/(60f*25f), 4f/(60f*25f), mulStart = 5f, mulEnd = 5f))
+      .freqBus.control(line(dur, 2, 3))
       .buildInstruments()
 
     val pan1 = new PanInstrumentBuilder()
@@ -39,7 +48,15 @@ object Relax1 {
       .addAction(TAIL_ACTION)
       .out(17)
       .dur(dur)
-      .ampBus.control(sin(dur, 7f/(60f*25f), 7f/(60f*25f)))
+      .ampBus.control(sin(dur, 7f/(60f*25f), 7f/(60f*25f), mulStart = 0.5f, mulEnd = 0.5f))
+      .buildInstruments()
+
+    val dust2 = new DustInstrumentBuilder()
+      .addAction(TAIL_ACTION)
+      .out(17)
+      .dur(dur)
+      .ampBus.control(sin(dur, 7f/(60f*25f), 7f/(60f*25f), mulStart = 5f, mulEnd = 5f))
+      .freqBus.control(line(dur, 3, 2))
       .buildInstruments()
 
     val pan2 = new PanInstrumentBuilder()
@@ -50,7 +67,7 @@ object Relax1 {
       .panBus.control(line(dur, 0.5f, 1))
       .buildInstruments()
 
-    player.sendNew(0, noise1 ++ pan1 ++ noise2 ++ pan2)
+    player.sendNew(0, noise1 ++ dust1 ++ pan1 ++ noise2 ++ dust2 ++ pan2)
   }
 
   def main(args: Array[String]): Unit = {
