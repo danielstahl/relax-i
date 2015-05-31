@@ -1,11 +1,9 @@
 package music
 
-import music.Instruments._
 import music.LineControlInstrumentBuilder._
-import music.ARControlInstrumentBuilder._
+import music.SinControlInstrumentBuilder._
 import net.soundmining.Instrument._
 import net.soundmining.{BusGenerator, MusicPlayer}
-import music.SinControlInstrumentBuilder._
 /**
  * The first relax piece
  */
