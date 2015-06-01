@@ -47,9 +47,13 @@ Synth("thetaPlus", [first: 440, second: 446]);
 
 
 // "http://en.wikipedia.org/wiki/Binaural_beats"
+// "http://free-binaural-beats.com/product/golden-frequency/"
 // "http://mynoise.net/NoiseMachines/binauralBrainwaveGenerator.php"
 //"http://en.wikipedia.org/wiki/Monaural_beats"
 // "http://brainwavewizard.com/entrainment/binaural-beats-monaural-beats-isochronic-tones/"
+// "http://audioentrainment.com/osters-curve-carrier-frequency"
+// "http://www.detoxorcist.com/binaural-beats-brainwave-entrainment-solfeggio-tones.html"
+// "http://www.the-guided-meditation-site.com/the-oster-curve.html"
 
 (
 a = 60 * 5;
@@ -69,6 +73,10 @@ Synth("thetaStereo", [dur: 10, first: 100, secondStart: 130, secondEnd: 107, att
 
 //"http://www.jstor.org/stable/10.1086/665048"
 
-{ SinOsc.ar(200, SinOsc.kr(4))}.play;
+{ SinOsc.ar(40, SinOsc.kr(4))}.play;
 
 {SinOsc.kr(4, mul:1, add:-0.5)}.plot(1);
+
+
+
+{ WhiteNoise.ar(SinOsc.kr(Line.kr(4/60, 7/60, 10)))}.play;

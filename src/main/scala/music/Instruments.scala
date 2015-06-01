@@ -263,6 +263,36 @@ class DustInstrumentBuilder extends AbstractInstrumentBuilder with DurBuilder wi
       buildDur()
 }
 
+abstract class CommonAuralInstrumentBuilder extends AbstractInstrumentBuilder with DurBuilder with OutputBuilder {
+  val ampBus = ControlArgumentBuilder[SelfType](self(), "ampBus")
+
+  val leftFreqBus = ControlArgumentBuilder[SelfType](self(), "leftFreqBus")
+
+  val rightFreqBus = ControlArgumentBuilder[SelfType](self(), "rightFreqBus")
+
+  override def build(): Seq[Object] =
+    super.build() ++
+    buildOut() ++
+    ampBus.buildBus() ++
+    leftFreqBus.buildBus() ++
+    rightFreqBus.buildBus() ++
+    buildDur()
+}
+
+class BinAuralInstrumentBuilder extends CommonAuralInstrumentBuilder {
+  type SelfType = BinAuralInstrumentBuilder
+  def self(): SelfType = this
+
+  val instrumentName: String = "binAural"
+}
+
+class MonAuralInstrumentBuilder extends CommonAuralInstrumentBuilder {
+  type SelfType = MonAuralInstrumentBuilder
+  def self(): SelfType = this
+
+  val instrumentName: String = "monAural"
+}
+
 abstract class CommonVolumeBuilder extends AbstractInstrumentBuilder with DurBuilder with InputBuilder {
 
   val ampBus = ControlArgumentBuilder[SelfType](self(), "ampBus")

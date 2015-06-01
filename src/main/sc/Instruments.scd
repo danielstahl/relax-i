@@ -82,6 +82,28 @@ SynthDef(\dust, {
 	Out.ar(out, noise * amp);
 }).add;
 
+SynthDef(\binAural, {
+	arg dur, leftFreqBus, rightFreqBus, ampBus, out = 0;
+	var leftFreq, rightFreq, amp;
+	Line.kr(dur:dur, doneAction:2);
+	leftFreq = In.kr(leftFreqBus);
+	rightFreq = In.kr(rightFreqBus);
+	amp = In.kr(ampBus);
+
+	Out.ar(out, [SinOsc.ar(leftFreq) * amp, SinOsc.ar(rightFreq) * amp]);
+}).add;
+
+SynthDef(\monAural, {
+	arg dur, leftFreqBus, rightFreqBus, ampBus, out = 0;
+	var leftFreq, rightFreq, amp;
+	Line.kr(dur:dur, doneAction:2);
+	leftFreq = In.kr(leftFreqBus);
+	rightFreq = In.kr(rightFreqBus);
+	amp = In.kr(ampBus);
+
+	Out.ar(out, (SinOsc.ar(leftFreq) * amp) + (SinOsc.ar(rightFreq) * amp));
+}).add;
+
 SynthDef(\pan, {
 	arg dur = 1, panBus = 0, in = 0, out = 0;
 	var pan, input;
