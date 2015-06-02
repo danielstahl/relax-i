@@ -111,14 +111,14 @@ object Relax1 {
       .addAction(TAIL_ACTION)
       .out(16)
       .dur(dur)
-      .ampBus.control(sin(dur, 3f/dur, 3f/dur, mulStart = 0.4f, mulEnd = 0.4f))
+      .ampBus.control(sin(dur, 3f/dur, 3f/dur, mulStart = 0.2f, mulEnd = 0.2f))
       .buildInstruments()
 
     val dust1 = new DustInstrumentBuilder()
       .addAction(TAIL_ACTION)
       .out(16)
       .dur(dur)
-      .ampBus.control(sin(dur, 3f/dur, 3f/dur, mulStart = 10f, mulEnd = 10f))
+      .ampBus.control(sin(dur, 3f/dur, 3f/dur, mulStart = 5f, mulEnd = 5f))
       .freqBus.control(ar(dur, 0.5f, (2, 3, 2)))
       .buildInstruments()
 
@@ -134,14 +134,14 @@ object Relax1 {
       .addAction(TAIL_ACTION)
       .out(17)
       .dur(dur)
-      .ampBus.control(sin(dur, 4f/dur, 4f/dur, mulStart = 0.4f, mulEnd = 0.4f))
+      .ampBus.control(sin(dur, 4f/dur, 4f/dur, mulStart = 0.2f, mulEnd = 0.2f))
       .buildInstruments()
 
     val dust2 = new DustInstrumentBuilder()
       .addAction(TAIL_ACTION)
       .out(17)
       .dur(dur)
-      .ampBus.control(sin(dur, 4f/dur, 4f/dur, mulStart = 10f, mulEnd = 10f))
+      .ampBus.control(sin(dur, 4f/dur, 4f/dur, mulStart = 5f, mulEnd = 5f))
       .freqBus.control(line(dur, 2, 3))
       .buildInstruments()
 
@@ -157,14 +157,14 @@ object Relax1 {
       .addAction(TAIL_ACTION)
       .out(18)
       .dur(dur)
-      .ampBus.control(sin(dur, 7f/dur, 7f/dur, mulStart = 0.4f, mulEnd = 0.4f))
+      .ampBus.control(sin(dur, 7f/dur, 7f/dur, mulStart = 0.2f, mulEnd = 0.2f))
       .buildInstruments()
 
     val dust3 = new DustInstrumentBuilder()
       .addAction(TAIL_ACTION)
       .out(18)
       .dur(dur)
-      .ampBus.control(sin(dur, 7f/dur, 7f/dur, mulStart = 10f, mulEnd = 10f))
+      .ampBus.control(sin(dur, 7f/dur, 7f/dur, mulStart = 5f, mulEnd = 5f))
       .freqBus.control(line(dur, 3, 2))
       .buildInstruments()
 
@@ -181,7 +181,7 @@ object Relax1 {
       .addAction(TAIL_ACTION)
       .out(18)
       .dur(dur)
-      .ampBus.control(asr(dur, (0f, 0.4f, 0.4f, 0.0f), (0.2f, 0.6f, 0.2f)))
+      .ampBus.control(asr(dur, (0f, 0.2f, 0.2f, 0.0f), (0.1f, 0.7f, 0.2f)))
       .leftFreqBus.control(line(dur, carrier, carrier))
       .rightFreqBus.control(asr(dur, (startFrequency, targetFrequency, targetFrequency, targetFrequency), (0.1f, 0.8f, 0.1f)))
       .buildInstruments()
@@ -198,7 +198,7 @@ object Relax1 {
       .addAction(TAIL_ACTION)
       .out(0)
       .dur(dur)
-      .ampBus.control(asr(dur, (0f, 0.5f, 0.5f, 0.0f), (0.2f, 0.6f, 0.2f)))
+      .ampBus.control(asr(dur, (0f, 0.3f, 0.3f, 0.0f), (0.1f, 0.7f, 0.2f)))
       .leftFreqBus.control(line(dur, carrier, carrier))
       .rightFreqBus.control(asr(dur, (startFrequency, targetFrequency, targetFrequency, targetFrequency), (0.1f, 0.8f, 0.1f)))
       .buildInstruments()
@@ -233,6 +233,6 @@ object Relax1 {
 
   def main(args: Array[String]): Unit = {
     val dur = 60f * 25f
-    meditation(dur)
+    relax(dur)
   }
 }
