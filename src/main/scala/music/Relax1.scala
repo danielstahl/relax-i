@@ -233,6 +233,6 @@ object Relax1 {
 
   def main(args: Array[String]): Unit = {
     val dur = 60f * 25f
-    relax(dur)
+    focus(dur)
   }
 }

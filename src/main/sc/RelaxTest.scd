@@ -82,3 +82,11 @@ Synth("thetaStereo", [dur: 10, first: 100, secondStart: 130, secondEnd: 107, att
 
 
 { WhiteNoise.ar(SinOsc.kr(Line.kr(4/60, 7/60, 10)))}.play;
+
+{SinOsc.kr(4, mul:0.5)}.plot(1);
+
+
+
+
+
+
